@@ -2,7 +2,7 @@
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel heading pic_image">
-                <%= image_tag @pic.image.url, style: 'width: 600px'%>
+                <%= image_tag @pic.image.url %>
             </div>
             <div class="panel-body">            
                 <h1><%= @pic.title %></h1>
@@ -15,6 +15,10 @@
                     </div>
                     <div class="col-md-6">
                         <div class="btn-group pull-right">
+                            <%= link_to like_pic_path(@pic), method: :put, class: "btn btn-default" do %>
+                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                <%= @pic.get_upvotes.size %>
+                            <% end %>
                             <% if user_signed_in? %>
                                 <%= link_to "Edit", edit_pic_path, class: "btn btn-info" %>
                                 <%= link_to "Delete", pic_path, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger" %>
